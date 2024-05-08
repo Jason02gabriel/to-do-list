@@ -39,4 +39,17 @@ public class TaskService {
         taskRepository.save(task);
     }
 
+    public void deleteTask(Integer id) {
+        taskRepository.deleteById(id);
+    }
+
+    public void updateTask(Integer id, TaskDTO taskData) {
+        Tasks task = taskRepository.findById(id).orElseThrow();
+        task.setName(taskData.name());
+        task.setDescription(taskData.description());
+        task.setStatus(taskData.status());
+        task.setPriority(taskData.priority());
+        taskRepository.save(task);
+    }
+
 }
