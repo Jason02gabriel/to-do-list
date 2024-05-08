@@ -17,4 +17,8 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public Tasks findTaskById(Integer id) {
+        return taskRepository.findById(id).orElseThrow();
+    }
+
 }
