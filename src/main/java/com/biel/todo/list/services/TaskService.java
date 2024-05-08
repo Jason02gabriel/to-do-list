@@ -2,6 +2,7 @@ package com.biel.todo.list.services;
 
 import com.biel.todo.list.domain.dtos.TaskDTO;
 import com.biel.todo.list.domain.entities.Tasks;
+import com.biel.todo.list.infra.Exceptions.NotFoundException;
 import com.biel.todo.list.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ public class TaskService {
 
     public TaskDTO findTaskByName(String name) {
         Tasks task = taskRepository.findByName(name);
+        if (task == null) throw new NotFoundException("Task Not Found");
         return new TaskDTO(task.getName(), task.getDescription(), task.getStatus(), task.getPriority());
     }
 
@@ -42,6 +44,7 @@ public class TaskService {
     }
 
     public void deleteTask(Integer id) {
+        if (!taskRepository.findById(id).isPresent()) throw new NotFoundException("Task Not Found");
         taskRepository.deleteById(id);
     }
 

@@ -11,10 +11,20 @@ import java.util.NoSuchElementException;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity findDocumentException(NoSuchElementException e) {
-        ExceptionDTO exceptionDTO = new ExceptionDTO("User not found", "400");
+    public ResponseEntity findIdException(NoSuchElementException e) {
+        ExceptionDTO exceptionDTO = new ExceptionDTO("Task not found", "400");
         return ResponseEntity.badRequest().body(exceptionDTO);
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity notFoundException( NotFoundException e) {
+        ExceptionDTO exceptionDTO = new ExceptionDTO("Task not found", "400");
+        return ResponseEntity.badRequest().body(exceptionDTO);
+    }
+
+
+
+
 
 
 
