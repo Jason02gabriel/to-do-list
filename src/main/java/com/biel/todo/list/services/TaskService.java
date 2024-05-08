@@ -4,7 +4,6 @@ import com.biel.todo.list.domain.dtos.TaskDTO;
 import com.biel.todo.list.domain.entities.Tasks;
 import com.biel.todo.list.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +32,11 @@ public class TaskService {
     public TaskDTO findTaskByName(String name) {
         Tasks task = taskRepository.findByName(name);
         return new TaskDTO(task.getName(), task.getDescription(), task.getStatus(), task.getPriority());
+    }
+
+    public void saveTask(TaskDTO taskData) {
+        Tasks task = new Tasks(taskData);
+        taskRepository.save(task);
     }
 
 }

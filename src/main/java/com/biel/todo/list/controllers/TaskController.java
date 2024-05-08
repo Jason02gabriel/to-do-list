@@ -1,15 +1,11 @@
 package com.biel.todo.list.controllers;
 
 import com.biel.todo.list.domain.dtos.TaskDTO;
-import com.biel.todo.list.domain.entities.Tasks;
-import com.biel.todo.list.repositories.TaskRepository;
 import com.biel.todo.list.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +28,12 @@ public class TaskController {
     @GetMapping("/name/{name}")
     public ResponseEntity<TaskDTO> getTaskByName(@PathVariable String name){
         return ResponseEntity.ok(service.findTaskByName(name));
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> saveTask(@RequestBody TaskDTO taskData){
+        service.saveTask(taskData);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
