@@ -1,5 +1,6 @@
 package com.biel.todo.list.controllers;
 
+import com.biel.todo.list.domain.dtos.TaskDTO;
 import com.biel.todo.list.domain.entities.Tasks;
 import com.biel.todo.list.repositories.TaskRepository;
 import com.biel.todo.list.services.TaskService;
@@ -20,12 +21,17 @@ public class TaskController {
     private TaskService service;
 
     @GetMapping
-    public ResponseEntity<List<Tasks>> getAllTasks() {
+    public ResponseEntity<List<TaskDTO>> getAllTasks() {
         return ResponseEntity.ok(service.getAllTasks());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Tasks> getTaskById(@PathVariable Integer id){
+    public ResponseEntity<TaskDTO> getTaskById(@PathVariable Integer id){
         return ResponseEntity.ok(service.findTaskById(id));
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<TaskDTO> getTaskByName(@PathVariable String name){
+        return ResponseEntity.ok(service.findTaskByName(name));
     }
 
 
