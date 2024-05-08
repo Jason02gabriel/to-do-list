@@ -19,8 +19,10 @@ public class Tasks {
     private Integer id;
     private String name;
     private String description;
-    private String status;
-    private String priority;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
 
     public Tasks(TaskDTO taskData) {
         name = taskData.name();

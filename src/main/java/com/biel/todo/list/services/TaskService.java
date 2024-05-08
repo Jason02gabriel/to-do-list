@@ -1,6 +1,7 @@
 package com.biel.todo.list.services;
 
 import com.biel.todo.list.domain.dtos.TaskDTO;
+import com.biel.todo.list.domain.entities.Status;
 import com.biel.todo.list.domain.entities.Tasks;
 import com.biel.todo.list.infra.Exceptions.NotFoundException;
 import com.biel.todo.list.repositories.TaskRepository;
@@ -52,7 +53,7 @@ public class TaskService {
         Tasks task = taskRepository.findById(id).orElseThrow();
         task.setName(taskData.name());
         task.setDescription(taskData.description());
-        task.setStatus(taskData.status());
+        task.setStatus((Status) taskData.status());
         task.setPriority(taskData.priority());
         taskRepository.save(task);
     }
