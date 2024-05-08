@@ -1,6 +1,4 @@
 package com.biel.todo.list.domain.entities;
-
-
 import com.biel.todo.list.domain.dtos.TaskDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
