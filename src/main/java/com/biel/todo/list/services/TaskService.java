@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TaskService {
@@ -26,6 +27,7 @@ public class TaskService {
 
     public TaskDTO findTaskById(Integer id) {
         Tasks task = taskRepository.findById(id).orElseThrow();
+        if (task == null) throw new NoSuchElementException();
         return new TaskDTO(task.getName(), task.getDescription(), task.getStatus(), task.getPriority());
     }
 
