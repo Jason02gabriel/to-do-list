@@ -1,6 +1,7 @@
 package com.biel.todo.list.domain.entities;
 
 
+import com.biel.todo.list.domain.dtos.TaskDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +22,10 @@ public class Tasks {
     private String status;
     private String priority;
 
+    public Tasks(TaskDTO taskData) {
+        name = taskData.name();
+        description = taskData.description();
+        status = taskData.status();
+        priority = taskData.priority();
+    }
 }
